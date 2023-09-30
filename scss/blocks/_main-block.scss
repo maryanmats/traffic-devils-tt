@@ -1,0 +1,54 @@
+.main-block {
+  &__container {
+    display: flex;
+    align-items: center;
+    padding-top: rem(70);
+    @include adaptiveValue("padding-left", 80, 15, 0, 1440, 767.98);
+    @include adaptiveValue("padding-right", 65, 15, 0, 1440, 767.98);
+    @include adaptiveValue("padding-bottom", 80, 40, 0, 1440, 767.98);
+
+    @media (max-width: $tablet) {
+      flex-direction: column-reverse;
+      gap: rem(40);
+      align-items: stretch;
+      padding-top: rem(0);
+    }
+  }
+  &__inner {
+    padding-left: rem(17);
+    flex: 0 1 rem(600);
+    @include adaptiveValue("padding-right", 55, 20, 0, 1440, 767.98);
+
+    @media (max-width: $tablet) {
+      padding-left: rem(0);
+      padding-right: rem(0);
+      flex: 0 1 auto;
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    color: #000;
+    font-weight: 700;
+    line-height: 130%;
+    text-align: center;
+    padding-top: rem(30);
+    margin-bottom: rem(15);
+    @include adaptiveValue("font-size", 36, 24);
+  }
+
+  &__partners {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: rem(12);
+  }
+
+  &__image {
+    align-self: center;
+  }
+}

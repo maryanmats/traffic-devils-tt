@@ -1,0 +1,56 @@
+.range-slider {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+
+  &::after,
+  &::before {
+    position: absolute;
+    bottom: -20px;
+    color: white;
+    font-size: 12px;
+  }
+
+  &::before {
+    left: 0;
+    content: "1100 PLN";
+  }
+  &::after {
+    right: 0;
+    content: "550 000+ PLN";
+  }
+}
+
+.irs .irs--big .js-irs-0 {
+  height: 100px;
+}
+
+.irs-min {
+  display: none;
+}
+.irs-max {
+  display: none;
+}
+.irs--big .irs-line {
+  height: 5px;
+  border-radius: 0;
+  background: white;
+}
+
+.irs--big .irs-handle {
+  top: 20px;
+  background: white;
+}
+
+.irs--big .irs-bar {
+  display: none;
+}
+
+.irs--big .irs-from,
+.irs--big .irs-to,
+.irs--big .irs-single {
+  top: -10px;
+  background: white;
+  color: rgb(50, 50, 203);
+  padding: rem(5);
+}

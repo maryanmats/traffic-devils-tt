@@ -1,0 +1,142 @@
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 114, 188, 0.4) 0%,
+      rgba(0, 114, 188, 0.4) 100%
+    ),
+    lightgray url("../img/form/form-bg.jpg") 50% / cover no-repeat;
+  border: rem(1) solid #878787;
+  max-width: rem(510);
+  padding: rem(48) rem(33) rem(61);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: rem(1) solid #d9d9d9;
+  }
+
+  &::before {
+    transform: rotate(-3deg);
+    background: url("../img/form/form-bg-01.jpg") lightgray 50% / cover
+      no-repeat;
+  }
+  &::after {
+    transform: rotate(3deg);
+    background: url("../img/form/form-bg-01.jpg") 50% / cover no-repeat;
+  }
+
+  @media (max-width: $tablet) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: $mobileSmall) {
+    padding: rem(20) rem(15);
+    margin: 0 rem(-15);
+  }
+
+  &__title {
+    position: relative;
+    align-self: center;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include adaptiveValue("font-size", 36, 20);
+
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 80, 40);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: rem(4);
+      background: linear-gradient(90deg, #1bb147 10.22%, #018ed5 104.68%);
+      max-width: rem(360);
+    }
+
+    &::before {
+      top: rem(-4);
+      left: 0;
+    }
+
+    &::after {
+      bottom: rem(-8);
+      left: 0;
+    }
+  }
+
+  &__main-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__line {
+    display: flex;
+    flex-direction: column;
+
+    &.error small {
+      visibility: visible;
+      height: 100%;
+    }
+
+    small {
+      height: 0;
+      color: red;
+      bottom: 0;
+      left: 0;
+      visibility: hidden;
+      margin-top: rem(10);
+    }
+
+    &:not(:first-child) {
+      margin-top: rem(14);
+    }
+  }
+
+  &__input {
+    color: black;
+    background-color: #fff;
+    border: 2px solid transparent;
+    width: 100%;
+    padding: rem(16);
+    @include adaptiveValue("font-size", 24, 20);
+
+    .success & {
+      border-color: green;
+    }
+
+    .error & {
+      border-color: red;
+    }
+    &:placeholder {
+      color: #878787;
+      @include adaptiveValue("font-size", 24, 20);
+    }
+  }
+
+  &__button {
+    margin-top: rem(36);
+    background: #fa0606;
+    color: #fff;
+    text-transform: uppercase;
+    padding: rem(16) rem(0);
+    @include adaptiveValue("font-size", 24, 20);
+    transition: all .3s ease;
+
+    &:hover {
+      background: white;
+      color: #fa0606;
+    }
+  }
+}

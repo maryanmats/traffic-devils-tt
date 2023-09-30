@@ -1,0 +1,59 @@
+.company {
+  @include adaptiveValue("padding-top", 80, 40);
+  @include adaptiveValue("padding-bottom", 48, 40);
+  background: url("../img/company/bg-image.jpg") 50% / cover no-repeat;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include adaptiveValue("padding-left", 65, 0, 0, 1440, 767.98);
+
+    &:not(:last-child) {
+      margin-bottom: rem(36);
+    }
+  }
+
+  &__text {
+    max-width: rem(880);
+    @include adaptiveValue("padding-left", 65, 0, 0, 1440, 767.98);
+
+    p {
+      color: #fff;
+      line-height: 130%;
+      letter-spacing: 0.66px;
+      @include adaptiveValue("font-size", 22, 16);
+
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+    }
+
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 60, 30);
+    }
+  }
+
+  &__button {
+    align-self: center;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    background: #fa0606;
+    padding: rem(16) rem(40);
+    @include adaptiveValue("font-size", 24, 20);
+
+    &:not(:last-child) {
+      margin-bottom: rem(36);
+    }
+  }
+
+  &__info {
+    @include adaptiveValue("font-size", 16, 14);
+    color: #fff;
+    text-align: center;
+    line-height: 130%;
+  }
+}

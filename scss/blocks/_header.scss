@@ -1,0 +1,132 @@
+.header {
+  &__top {
+    background: url("../img/header/top-bg.jpg") lightgray 50% / cover no-repeat;
+    position: relative;
+    z-index: 10;
+  }
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(15);
+
+    @include adaptiveValue("padding-bottom", 41, 10);
+    @include adaptiveValue("padding-top", 41, 10);
+  }
+}
+
+.menu {
+  padding: rem(15) 0;
+
+  &__body {
+    overflow: auto;
+
+    @media (max-width: $mobile) {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      padding: rem(110) rem(25) rem(30);
+      transition: left 0.3s ease 0s;
+
+      &::before {
+        content: "";
+        position: fixed;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        background-color: #fff;
+        transition: left 0.3s ease 0s;
+
+        .menu-open & {
+          left: 0;
+        }
+      }
+      .menu-open & {
+        left: 0;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: rem(15);
+
+    @media (max-width: $mobile) {
+      position: relative;
+      flex-direction: column;
+      align-items: end;
+      z-index: 9;
+    }
+  }
+  &__link {
+    color: $mainColor;
+    line-height: 130%;
+
+    @include adaptiveValue("font-size", 24, 20);
+
+    @media (max-width: $mobile) {
+      font-size: rem(24);
+    }
+  }
+}
+
+.icon-menu {
+  display: none;
+
+  @media (max-width: $mobile) {
+    display: block;
+    position: relative;
+    width: rem(30);
+    min-width: rem(30);
+    height: rem(18);
+    z-index: 5;
+
+    span,
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      right: 0;
+      width: 100%;
+      height: rem(2);
+      background-color: $mainColor;
+      transition: all 0.3s ease 0s;
+    }
+
+    &::before {
+      top: 0;
+
+      .menu-open & {
+        top: calc(50% - rem(1));
+        transform: rotate(-45deg);
+      }
+    }
+
+    &::after {
+      bottom: 0;
+      .menu-open & {
+        bottom: calc(50% - rem(1));
+        transform: rotate(45deg);
+      }
+    }
+
+    span {
+      top: calc(50% - rem(1));
+      .menu-open & {
+        width: 0;
+      }
+    }
+
+    @media (any-hover: none) {
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+.invest {
+  color: white;
+
+  &__top {
+    background-color: rgb(50, 50, 203);
+    @include adaptiveValue("padding-top", 100, 30);
+    @include adaptiveValue("padding-bottom", 100, 30);
+
+    h2 {
+      @include adaptiveValue("font-size", 36, 22);
+      font-weight: 700;
+      margin-bottom: rem(20);
+    }
+    p {
+      @include adaptiveValue("font-size",22, 16);
+
+      margin-bottom: rem(40);
+    }
+
+    button {
+      padding: rem(20) rem(67);
+      background: white;
+      color: rgb(50, 50, 203);
+      border: 1px solid transparent;
+      transition: all .3s ease;
+
+      &:hover {
+        background: rgb(50, 50, 203);
+        color: white;
+        border: 1px solid white;
+      }
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+  }
+  .sum {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    font-size: rem(12);
+    margin-top: rem(50);
+
+    span {
+      margin-top: rem(10);
+      font-size: rem(18);
+    }
+  }
+}

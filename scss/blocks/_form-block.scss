@@ -1,0 +1,17 @@
+.form-block {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include adaptiveValue("padding-top", 70, 30);
+    @include adaptiveValue("padding-bottom", 70, 30);
+
+    @media (max-width: $mobileSmall) {
+      margin: 0 rem(-15);
+    }
+  }
+  &__form {
+    width: 100%;
+  }
+}

@@ -1,0 +1,69 @@
+@function percent($px, $from) {
+  $result: math.div($px, $from) * 100%;
+  @return $result;
+}
+
+@function rem($px) {
+  $result: math.div($px, 16) + rem;
+  @return $result;
+}
+
+@function em($px, $current: 16) {
+  $result: math.div($px, $current) + em;
+  @return $result;
+}
+
+@function map-safe-get($map, $key) {
+  @if (
+    type-of($map) == "map" or (type-of($map) == "list" and length($map) == 0)
+  ) {
+    @if (map-has-key($map, $key)) {
+      @return map-get($map, $key);
+    } @else {
+      @error 'There is no key `#{$key}` in the list of keys `#{map-keys($map)}`';
+    }
+  } @else {
+    @error '`#{$map}` is not a valid map';
+  }
+}
+
+@function encodecolor($string) {
+  @if type-of($string) == "color" {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote("#{$hex}");
+  }
+
+  $string: "%23" + $string;
+  @return $string;
+}
+
+@function svg-icon-get($icon-map, $fill-color) {
+  $path: map-safe-get($icon-map, "path");
+  $sizeY: map-safe-get($icon-map, "sizeY");
+  $sizeX: map-safe-get($icon-map, "sizeX");
+  $fill-color: encodecolor($fill-color);
+  $icon: "data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 #{$sizeX} #{$sizeY}%22%3E";
+
+  @if (map-has-key($icon-map, stroke-width)) {
+    $stroke-width: map-safe-get($icon-map, "stroke-width");
+    $icon: "data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 #{$sizeX} #{$sizeY}%22%3E%3Cpath fill%3D%22none%22 stroke%3D%22#{$fill-color}%22 stroke-width%3D%22#{$stroke-width}%22 d%3D%22#{$path}%22%2F%3E%3C%2Fsvg%3E";
+  } @else if map-has-key($icon-map, "transform") {
+    $transform: map-safe-get($icon-map, "transform");
+    $icon: "data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 #{$sizeX} #{$sizeY}%22%3E%3Cpath fill%3D%22none%22 stroke%3D%22#{$fill-color}%22 transform%3D%22#{$transform}%22 d%3D%22#{$path}%22%2F%3E%3C%2Fsvg%3E";
+  } @else {
+    @if type_of($path) == "map" {
+      @for $i from 1 through length($path) {
+        $item: map-safe-get($path, $i);
+        $icon: $icon +
+          "%3Cpath fill%3D%22#{$fill-color}%22 d%3D%22#{$item}%22%2F%3E";
+      }
+    } @else {
+      $icon: $icon +
+        "%3Cpath fill%3D%22#{$fill-color}%22 d%3D%22#{$path}%22%2F%3E";
+    }
+
+    $icon: $icon + "%3C%2Fsvg%3E";
+  }
+
+  @return $icon;
+}

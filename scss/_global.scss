@@ -1,0 +1,131 @@
+body {
+  .menu-open & {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+}
+
+h1 {
+  color: #fff;
+  text-shadow: 0px 0px rem(30) rgba(0, 0, 0, 0.7);
+  @include adaptiveValue("font-size", 36, 22);
+}
+
+a:hover {
+  transition: color 0.3s ease;
+  color: red;
+}
+
+.gradient-title {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 130%;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #1bb147 10.22%, #018ed5 104.68%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  @include adaptiveValue("font-size", 48, 26);
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @supports (overflow: clip) {
+    overflow: clip;
+  }
+  > main {
+    flex: 1 1 auto;
+  }
+  > * {
+    min-width: 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@if ($responsiveType==1) {
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: rem($containerWidth);
+      margin: 0 auto;
+    }
+    @if ($containerPadding>0) {
+      @if ($maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      } @else {
+        @include adaptiveValue(
+          "padding-left",
+          math.div($containerPadding, 2),
+          15
+        );
+        @include adaptiveValue(
+          "padding-right",
+          math.div($containerPadding, 2),
+          15
+        );
+      }
+    }
+  }
+} @else {
+  [class*="__container"] {
+    margin: 0 auto;
+    @if ($maxWidthContainer>0) {
+      max-width: rem($containerWidth);
+    } @else {
+      @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+  }
+}
+
+%i-icon {
+  margin: 0;
+  &::before {
+    display: block;
+    content: "";
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 0.3s ease;
+
+    @supports (transition: initial) {
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+// [class*="__container"] *:last-child {
+//   margin-bottom: 0;
+// }
+
+img {
+  max-width: 100%;
+}

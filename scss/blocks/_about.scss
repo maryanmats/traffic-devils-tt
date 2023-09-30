@@ -1,0 +1,129 @@
+.about {
+  &__container {
+    position: relative;
+    display: flex;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      padding-top: rem(100);
+    }
+  }
+  &__image {
+    position: relative;
+    max-width: rem(570);
+    width: 100%;
+
+    @media (max-width: $tablet) {
+      position: absolute;
+      right: 0%;
+      width: rem(200);
+      border: 1px solid transparent;
+      border-radius: 50%;
+      overflow: hidden;
+      @include adaptiveValue("top", 50, -20);
+    }
+    img {
+      position: absolute;
+      bottom: 0;
+      left: rem(-15);
+
+      @media (max-width: $tablet) {
+        position: relative;
+        height: rem(200);
+        width: rem(200);
+        left: 50%;
+        bottom: rem(-40);
+        transform: translate(-50%);
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+  }
+
+  &__content {
+    flex: 0 1 rem(800);
+
+    @media (max-width: $tablet) {
+      display: flex;
+      flex-direction: column;
+      flex: 0 1 auto;
+    }
+  }
+
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: rem(36);
+    }
+
+    @media (max-width: $tablet) {
+      margin-top: rem(30);
+      order: 2;
+    }
+  }
+
+  &__text {
+    position: relative;
+
+    p {
+      @include adaptiveValue("font-size", 22, 16);
+      line-height: 130%;
+      letter-spacing: 0.66px;
+
+      span {
+        color: #181818;
+        font-weight: 700;
+        letter-spacing: rem(0.63);
+        @include adaptiveValue("font-size", 21, 16);
+      }
+
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: rem(25);
+    }
+
+    @media (max-width: $tablet) {
+      order: 3;
+    }
+  }
+
+  &__info {
+    padding: rem(24) rem(0);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 500%;
+      height: 100%;
+      top: 0;
+      left: -200%;
+      z-index: -1;
+      background: linear-gradient(90deg, #1bb147 10.22%, #018ed5 104.68%);
+    }
+
+    @media (max-width: $tablet) {
+      order: 1;
+      padding: rem(60) rem(0) rem(24) rem(0);
+    }
+  }
+
+  &__name {
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include adaptiveValue("font-size", 28, 22);
+
+    &:not(:last-child) {
+      margin-bottom: rem(4);
+    }
+  }
+  
+  &__position {
+    color: #fff;
+    @include adaptiveValue("font-size", 24, 20);
+  }
+}
